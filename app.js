@@ -12,8 +12,12 @@ mongoose.connect(process.env.dbURL)
 .then(() => {
     console.log("DB Connected");
 })
+.catch((e) => {
+    console.log("Database connection error");
+    console.log(e);
+})
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -31,7 +35,10 @@ app.get('/', async (req, res) => {
         res.render('index', { projects: allProjects });
     }
     catch (e) {
+        console.error(e);
+    
         res.status(500).render('error', { error: 'Internal Server Error' });
+        return;
     }
 })
 
@@ -60,7 +67,10 @@ app.post('/create', async (req, res) => {
         console.log(newProject);
     }
     catch (e) {
-        res.status(500).render('error', { error: 'Internal Server Error' });
+        console.error(e._message);
+    
+        res.status(500).render('error', { error: e._message });
+        return;
     }
 
     res.redirect('/');
@@ -85,7 +95,10 @@ app.get('/show/:id', async (req, res) => {
         res.render('show', { project: reqProject });
     }
     catch (e) {
+        console.error(e);
+    
         res.status(500).render('error', { error: 'Internal Server Error' });
+        return;
     }
 })
 
@@ -102,7 +115,10 @@ app.get('/tags/:tag', async (req, res) => {
         res.render('tags', { projects: reqProjects, tag });
     }
     catch (e) {
+        console.error(e);
+    
         res.status(500).render('error', { error: 'Internal Server Error' });
+        return;
     }
 })
 
@@ -124,7 +140,10 @@ app.get('/edit/:id', async (req, res) => {
         res.render('edit', { project: reqProject });
     }
     catch (e) {
+        console.error(e);
+    
         res.status(500).render('error', { error: 'Internal Server Error' });
+        return;
     }
 })
 
@@ -140,7 +159,10 @@ app.patch('/edit/:id', async (req, res) => {
         res.redirect(`/show/${id}`);
     }
     catch (e) {
+        console.error(e);
+    
         res.status(500).render('error', { error: 'Internal Server Error' });
+        return;
     }
 })
 
@@ -155,8 +177,10 @@ app.get('/delete/:id', async (req, res) => {
         res.redirect('/');
     }
     catch (e) {
-        console.log(e);
-        res.status(500).send('Internal Server Error');
+        console.error(e);
+    
+        res.status(500).render('error', { error: 'Internal Server Error' });
+        return;
     }
 })
 
