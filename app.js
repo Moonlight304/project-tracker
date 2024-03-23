@@ -8,6 +8,9 @@ require('dotenv').config();
 
 //importing model and connecting database
 const Project = require('./models/Projects.js');
+
+// Issue: Lack of error handling for database connection failure.
+// Resolution: Implement error handling for database connection to gracefully handle connection failures.
 mongoose.connect(process.env.dbURL)
 .then(() => {
     console.log("DB Connected");
@@ -48,6 +51,9 @@ app.get('/create', (req, res) => {
 })
 
 // getting project information and saving in database
+
+// Issue: No validation for required fields in create route.
+// Resolution: Implement validation for required fields to ensure data integrity.
 app.post('/create', async (req, res) => {
     try {
         const { projectName, projectDescription, projectDuration, projectTag1, projectTag2 } = req.body;
@@ -77,6 +83,9 @@ app.post('/create', async (req, res) => {
 })
 
 // rendering show page of a project
+
+// Issue: Incomplete error handling for invalid project IDs.
+// Resolution: Implement complete error handling for invalid project IDs to provide appropriate responses.
 app.get('/show/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -185,6 +194,9 @@ app.get('/delete/:id', async (req, res) => {
 })
 
 // handling invalid URL's and rendering notFound page
+
+// Issue: Lack of error handling for invalid URLs.
+// Resolution: Implement error handling for invalid URLs to provide a meaningful response to users.
 app.get('*', (req, res) => {
     console.log("ERROR");
     console.log("Page not found");

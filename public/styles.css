@@ -161,7 +161,7 @@
     }
 
     .mainBody {
-        margin: 0rem !important;
+        margin: 1rem 0rem !important;
     }
 
     .project-cards {
@@ -204,7 +204,7 @@
     }
 
     .mainBody {
-        margin: 0rem 2rem;
+        margin: 2rem 2rem 0rem 2rem;
     }
 
     .project-cards {
