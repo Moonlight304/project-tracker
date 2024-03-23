@@ -4,10 +4,11 @@ const axios = require('axios');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
+require('dotenv').config();
 
 //importing model and connecting database
 const Project = require('./models/Projects.js');
-mongoose.connect('mongodb://127.0.0.1:27017/projects');
+mongoose.connect(process.env.dbURL);
 
 const PORT = 3000;
 
