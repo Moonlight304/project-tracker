@@ -8,7 +8,10 @@ require('dotenv').config();
 
 //importing model and connecting database
 const Project = require('./models/Projects.js');
-mongoose.connect(process.env.dbURL);
+mongoose.connect(process.env.dbURL)
+.then(() => {
+    console.log("DB Connected");
+})
 
 const PORT = 3000;
 
