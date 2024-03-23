@@ -1,0 +1,30 @@
+<% layout('layouts/layout.ejs') %>
+
+    <h1 class="ms-3">
+        <%= project.name %>
+    </h1>
+
+    <div class="card-container">
+        <img src="<%= project.image %>" alt="project image">
+
+        <div>
+            <h4>
+                <%= project.description %>
+            </h4>
+
+            <h5 class="mt-5"> Duration : <%= project.duration %> months</h5>
+
+            <% if (project.tags[0] !=='' ) { %>
+                    <h5 class="mt-5"> Tags : <a href="/tags/<%= project.tags[0] %>">
+                            <%= project.tags[0] %>
+                        </a>, <a href="/tags/<%= project.tags[1] %>">
+                            <%= project.tags[1] %>
+                        </a></h5>
+                    <% } %>
+
+        </div>
+
+    </div>
+
+    <a href="/edit/<%= project._id %>"><button type="button" class="ms-3 btn btn-info">Edit</button></a>
+    <a href="/"> <button type="button" class="btn btn-warning"> Close </button> </a>

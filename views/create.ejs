@@ -1,0 +1,35 @@
+<% layout('layouts/layout.ejs') %>
+
+    <h1 class="ms-3"> Create a new project </h1>
+
+    <form class="create-form" action="/create" method="POST">
+        <div class="input-group mb-3 p-3">
+            <span class="input-group-text" id="basic-addon1"> Project Name </span>
+            <input name="projectName" type="text" class="form-control border border-dark-subtle" placeholder="Enter name of your project"
+                aria-label="Username" aria-describedby="basic-addon1" required>
+        </div>
+
+        <div class="input-group mb-3 p-3">
+            <span class="input-group-text"> Description </span>
+            <textarea name="projectDescription" class="form-control border border-dark-subtle" placeholder="Describe your project"
+                aria-label="With textarea" required></textarea>
+        </div>
+
+        <div class="duration-tags">
+            <div class="input-group">
+                <span class="input-group-text"> Duration </span>
+                <input name="projectDuration" type="text" class="form-control border border-dark-subtle" required>
+                <span class="input-group-text"> Months </span>
+            </div>
+    
+            <div class="input-group">
+                <span class="input-group-text"> Tags </span>
+                <input name="projectTag1" type="text" aria-label="First name" class="form-control border border-dark-subtle">
+                <input name="projectTag2" type="text" aria-label="Last name" class="form-control border border-dark-subtle">
+            </div>
+        </div>
+
+
+        <input class="ms-3 btn btn-primary" type="submit" value="Create">
+        <a href="/"> <button type="button" class="btn btn-warning"> Back </button> </a>
+    </form>

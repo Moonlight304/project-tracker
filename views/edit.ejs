@@ -1,0 +1,42 @@
+<% layout('layouts/layout.ejs') %>
+
+    <h1 class="ms-3">
+        Edit <%= project.name %>
+    </h1>
+
+    <form method="post" class="card-container" action="/edit/<%= project._id %>?_method=PATCH">
+        <img src="<%= project.image %>" alt="project image">
+
+        <div>
+            <div class="input-group mb-3">
+                <textarea rows="5" name="projectDescription" class="form-control border border-dark-subtle"
+                    placeholder="Describe your project" aria-label="With textarea"
+                    required><%= project.description %></textarea>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"> Duration </span>
+                <input name="projectDuration" type="text" class="form-control border border-dark-subtle"
+                    value="<%= project.duration %>" required>
+                <span class="input-group-text"> Months </span>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text"> Edit Tags </span>
+                <input name="projectTag1" type="text" aria-label="First name"
+                    class="form-control border border-dark-subtle" value="<%= project.tags[0] %>">
+                <input name="projectTag2" type="text" aria-label="Last name"
+                    class="form-control border border-dark-subtle" value="<%= project.tags[1] %>">
+            </div>
+        </div>
+
+    </form>
+
+    <button type="button" class="ms-3 btn btn-success">Save</button>
+    <a href="/show/<%= project._id %>"> <button type="button" class="btn btn-warning"> Back </button> </a>
+
+    <script>
+        document.querySelector('.btn-success').addEventListener('click', function () {
+            document.querySelector('.card-container').submit();
+        });
+    </script>
